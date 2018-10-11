@@ -10,7 +10,7 @@ public class Principal {
 		boolean end = false;
 		Equipo equipos[] = new Equipo [5];
          
-		
+		//hola
 		Scanner sc = new Scanner(System.in);
 		Partida partida = new Partida(); //Creamos el objecto partida con el constructor por defecto para llamar al menu 
 		
