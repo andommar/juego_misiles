@@ -130,7 +130,6 @@ public class lamina_menu extends JLabel implements ActionListener {
 			frame.remove(this);
 			Lamina_Equipos lamina_Equipos  = new Lamina_Equipos();
 			frame.add(lamina_Equipos);
-			frame.pack();
 			frame.setVisible(true);
 			
 				

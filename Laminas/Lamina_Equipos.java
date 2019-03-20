@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
     protected JTextArea textArea;
     private final static String newline = "\n";
     
+    JButton boton1 = new JButton ("Juego");
     JButton boton2 = new JButton ("Jugar2");
     
     Image img;
@@ -34,44 +36,67 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 		// Read the image and place it in the variable img so it can be used in paintComponent
         img = Toolkit.getDefaultToolkit().createImage("src/misiles_v4/space_fondo.jpg");
 		
+      //Text Field
+		textField = new JTextField(10);
+		textField.addActionListener(this);
+		
+	    textArea = new JTextArea(10,20);
+	    textArea.setEditable(false); //no deja editar el texto
+	      
+	    JScrollPane scrollPane = new JScrollPane(textArea); //se añade un scroll panel al textArea
+        
+        
         //Add Components to this panel.
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
-		
-		
-		textField = new JTextField(20);
-		textField.addActionListener(this);
-		
-        textArea = new JTextArea(10,20);
-        textArea.setEditable(false); //no deja editar el texto
-        
-        JScrollPane scrollPane = new JScrollPane(textArea); //se añade un scroll panel al textArea
-        
+				
 
-        //c.gridwidth = GridBagConstraints.REMAINDER; //gridwidth ancho del grid
-        
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0;
-        c.weighty = 2;
-        add(textField, c);
-        
-        
-        
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0;
-        c.weighty = 0;
-        add(scrollPane, c);
+		//Padding de componentes
+		c.ipady = 20;
+		c.ipadx = 20;
+		c.insets = new Insets(30,0,0,0); //external padding
 
-        //botones
-        
-        boton2.setBackground(Color.lightGray);
-		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
-  
+		//--------------DISTRIBUCIÓN LAYOUT 
+		//Botón 1
+		boton1.setOpaque(false);
+		boton1.setContentAreaFilled(false);
+		boton1.setBorderPainted(false);
+		boton1.setForeground(Color.RED);
+		c.fill = GridBagConstraints.HORIZONTAL;
+			
+		c.gridx = 0;
+		c.gridy = 0;
+		add(boton1,c);
+		
+		//Botón 2
+		boton2.setBackground(Color.lightGray);
+		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE)); //matteborder define el grosor de cada extremo del boton y el color
+		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 3;
 		add(boton2,c);
+		
+		
+        //Text Field
+        
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0;
+        c.weighty = 10;
+		c.gridx = 0;
+		c.gridy = 1;
+        add(textField, c);
+        
+        //Scroll Panel
+        
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0;
+        c.weighty = 0;
+		c.gridx = 0;
+		c.gridy = 2;
+        add(scrollPane, c);
+        
+       
 	}
 	
     public void paintComponent(Graphics g)
@@ -88,5 +113,6 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
         textArea.append(text + newline); //append envia el texto al final
         textField.selectAll();
 		
+
 	}
 }
