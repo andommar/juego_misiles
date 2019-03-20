@@ -22,23 +22,11 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 	JButton boton2 = new JButton ("Jugar2");
 	JButton boton3 = new JButton ("Jugar3");
 	
-    private JTextField textfield1;
-    private JTextArea textarea1;
-	
-    JEditorPane editor = new JEditorPane();
-    JScrollPane scroll = new JScrollPane(editor);
-    
-	
-	int opcion = 0;
-	
-	public void Seleccion (int opcion) {
-		
-	}
 	
 	Lamina_Juego(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		editor.setContentType("text/html");
+
 		
 		
 		//-------------------------BOTONES-------------------------
@@ -76,15 +64,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		add(boton3,c);
 		
 		
-		//-------------------------TEXTO-------------------------
-        textfield1=new JTextField();
-        textfield1.setBounds(10,10,200,30);
-        add(textfield1);
-        textarea1=new JTextArea();
-        textarea1.setBounds(10,50,400,300);
-        add(textarea1);
-
-		
+	
 		
 	}
 	

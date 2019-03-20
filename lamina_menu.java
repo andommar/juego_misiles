@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
-import misiles_v4.Laminas.Lamina_Info;
+import misiles_v4.Laminas.Lamina_Equipos;
 
 public class lamina_menu extends JLabel implements ActionListener {
 	
@@ -37,9 +37,10 @@ public class lamina_menu extends JLabel implements ActionListener {
 	
 	lamina_menu(){
 		
+		
 		// Read the image and place it in the variable img so it can be used in paintComponent
         img = Toolkit.getDefaultToolkit().createImage("src/misiles_v4/space_fondo.jpg");
-		
+        
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -127,8 +128,9 @@ public class lamina_menu extends JLabel implements ActionListener {
 			System.out.println("yee");
 			
 			frame.remove(this);
-			Lamina_Info lamina_Info  = new Lamina_Info();
-			frame.add(lamina_Info);
+			Lamina_Equipos lamina_Equipos  = new Lamina_Equipos();
+			frame.add(lamina_Equipos);
+			frame.pack();
 			frame.setVisible(true);
 			
 				
