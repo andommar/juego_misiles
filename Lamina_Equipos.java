@@ -32,8 +32,8 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
  
     private final static String newline = "\n";
     
-    JButton boton1 = new JButton ("Juego");
-    JButton boton2 = new JButton ("Jugar2");
+    JButton boton1 = new JButton ("Crear");
+    JButton boton2 = new JButton ("Avanzar");
     
     Image img;
 	
@@ -73,6 +73,7 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 		//Botón 1
 		boton1.setBackground(Color.lightGray);
 		boton1.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
+		boton1.addActionListener(this);
 		
 		
 		
@@ -153,15 +154,21 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
     }
 	
 
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-        String text = textField.getText();
-        String texto2 = textField2.getText();
-        textArea.append(text + " de tipo "+texto2+" "+ newline); //append envia el texto al final
-        textField.selectAll();
+		if (e.getSource()==boton1) {
+	        String text = textField.getText();
+	        String texto2 = textField2.getText();
+	        textArea.append(text + " de tipo "+texto2+" "+ newline); //append envia el texto al final
+	        textField.setText("");
+	        textField2.setText("");
+        }
 		
+
+
 
 	}
 }

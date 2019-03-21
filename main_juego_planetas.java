@@ -52,23 +52,7 @@ public class main_juego_planetas{
 		
 		Partida partida = new Partida ();
 		
-		
-		
-		
-		//-------------------------INTERFICIE SWING-------------------------
-		
-		
-		
 
-		
-		//-------------------------MENU
-		
-		
-		
-		
-		
-		//--------------------------------------------------
-		
 		while (end != true) {
 		
 			partida.MostrarMenu();

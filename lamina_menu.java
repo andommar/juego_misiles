@@ -29,8 +29,8 @@ public class lamina_menu extends JLabel implements ActionListener {
 	//http://www.tutorialesprogramacionya.com/javaya/detalleconcepto.php?codigo=107&punto=&inicio=
 	
 	JButton boton1 = new JButton ("Jugar");
-	JButton boton2 = new JButton ("Jugar2");
-	JButton boton3 = new JButton ("Jugar3");
+	JButton boton2 = new JButton ("Crear equipos");
+	JButton boton3 = new JButton ("Información");
 	JButton boton4 = new JButton ("Jugar4");
 	JButton boton5 = new JButton ("Jugar5");
 	
@@ -55,8 +55,7 @@ public class lamina_menu extends JLabel implements ActionListener {
 		boton2.setBackground(Color.lightGray);
 		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE)); //matteborder define el grosor de cada extremo del boton y el color
 		
-		
-		
+
 		
 		c.ipady = 20;
 		c.ipadx = 50;
@@ -113,11 +112,12 @@ public class lamina_menu extends JLabel implements ActionListener {
 		System.out.println((JFrame)SwingUtilities.getWindowAncestor(this));
 		
 		if(e.getSource()==boton1) {
-			System.out.println("yee");
+			
 			
 			frame.remove(this);
-			Lamina_Juego lamina_juegos  = new Lamina_Juego();
-			frame.add(lamina_juegos);
+			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
+			Lamina_Seleccion_equipos lamina_seleccion = new Lamina_Seleccion_equipos();
+			frame.add(lamina_seleccion);
 			frame.setVisible(true);
 			
 			//frame.remove(this);
