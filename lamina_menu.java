@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
-import misiles_v4.Laminas.Lamina_Equipos;
 
 public class lamina_menu extends JLabel implements ActionListener {
 	

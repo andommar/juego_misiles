@@ -59,11 +59,7 @@ public class main_juego_planetas{
 		
 		
 		
-		JFrame frame = new FramePrincipal ("Misiles v4");
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		frame.setSize(450, 500);
+
 		
 		//-------------------------MENU
 		
