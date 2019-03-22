@@ -129,8 +129,9 @@ public class lamina_menu extends JLabel implements ActionListener {
 			
 			frame.remove(this);
 			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
-			Lamina_Seleccion_equipos lamina_seleccion = new Lamina_Seleccion_equipos();
-			frame.add(lamina_seleccion);
+			Lamina_Equipos lamina_equipos = new Lamina_Equipos();
+			frame.add(lamina_equipos);
+
 			frame.setVisible(true);
 			
 				

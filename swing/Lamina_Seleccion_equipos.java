@@ -86,6 +86,8 @@ public class Lamina_Seleccion_equipos extends JPanel implements ActionListener {
 		System.out.println((JFrame)SwingUtilities.getWindowAncestor(this));
 		
 		if (e.getSource()==boton1) {
+			
+			
 			frame.remove(this);
 			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
 			Lamina_Equipos lamina_equipos = new Lamina_Equipos();

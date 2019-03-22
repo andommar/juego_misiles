@@ -10,9 +10,11 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -27,6 +29,21 @@ import javax.swing.border.MatteBorder;
 
 public class Lamina_Equipos extends JPanel implements ActionListener{
 	
+	
+	final static int NUM_MIN_EQUIPOS=3;
+	
+	final static int OPCION_MIN_TIPO=0;
+	final static int OPCION_MAX_TIPO=10;
+	
+	final static int OPCION_MIN_MENU=1;
+	final static int OPCION_MAX_MENU=6;
+	
+
+	public static ArrayList <Planeta> planetas = new ArrayList <Planeta>();
+	public static ArrayList <String> frases = new ArrayList <String>();
+	
+	
+	
     protected JTextField textField;
     protected JTextField textField2;
     protected JTextArea textArea;
@@ -37,6 +54,8 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
     JButton boton2 = new JButton ("Avanzar");
     
     Image img;
+    
+    int num_equipos=0;
 	
 	public Lamina_Equipos(){
 		
@@ -161,12 +180,30 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		if (e.getSource()==boton1) {
+			num_equipos++;
+			
 	        String text = textField.getText();
 	        String texto2 = textField2.getText();
+	        
+	        Planeta planeta = new Planeta (text, 1);
+	        planetas.add(planeta);
+	        
 	        textArea.append(text + " de tipo "+texto2+" "+ newline); //append envia el texto al final
 	        textField.setText("");
 	        textField2.setText("");
         }
+		
+		if(e.getSource()==boton2) {
+
+				JOptionPane.showMessageDialog(null, "Tu madre");
+			
+			
+		}
+		
+		for(Planeta pasar_planeta:planetas) {
+			System.out.println("Nombre del planeta:"+pasar_planeta.getNombre());
+		}
+		
 		
 
 
