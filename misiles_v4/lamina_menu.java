@@ -1,6 +1,5 @@
 package misiles_v4;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -21,7 +20,7 @@ import javax.swing.border.MatteBorder;
 public class lamina_menu extends JLabel implements ActionListener {
 	
 	Image img;
-	
+	Partida partida = new Partida ();
 	
 	private int opcion;
 	
@@ -30,8 +29,8 @@ public class lamina_menu extends JLabel implements ActionListener {
 	//http://www.tutorialesprogramacionya.com/javaya/detalleconcepto.php?codigo=107&punto=&inicio=
 	
 	JButton boton1 = new JButton ("Jugar");
-	JButton boton2 = new JButton ("Crear equipos");
-	JButton boton3 = new JButton ("Información");
+	JButton boton2 = new JButton ("Jugar2");
+	JButton boton3 = new JButton ("Jugar3");
 	JButton boton4 = new JButton ("Jugar4");
 	JButton boton5 = new JButton ("Jugar5");
 	
@@ -56,7 +55,8 @@ public class lamina_menu extends JLabel implements ActionListener {
 		boton2.setBackground(Color.lightGray);
 		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE)); //matteborder define el grosor de cada extremo del boton y el color
 		
-
+		
+		
 		
 		c.ipady = 20;
 		c.ipadx = 50;
@@ -113,12 +113,11 @@ public class lamina_menu extends JLabel implements ActionListener {
 		System.out.println((JFrame)SwingUtilities.getWindowAncestor(this));
 		
 		if(e.getSource()==boton1) {
-			
+			System.out.println("yee");
 			
 			frame.remove(this);
-			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
-			//Lamina_Juego lamina_juego = new Lamina_Juego();
-			//frame.add(lamina_juego);
+			Lamina_Juego lamina_juegos  = new Lamina_Juego();
+			frame.add(lamina_juegos);
 			frame.setVisible(true);
 			
 			//frame.remove(this);
@@ -128,10 +127,8 @@ public class lamina_menu extends JLabel implements ActionListener {
 			System.out.println("yee");
 			
 			frame.remove(this);
-			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
-			Lamina_Equipos lamina_equipos = new Lamina_Equipos();
-			frame.add(lamina_equipos);
-
+			Lamina_Equipos lamina_Equipos  = new Lamina_Equipos();
+			frame.add(lamina_Equipos);
 			frame.setVisible(true);
 			
 				
@@ -140,7 +137,7 @@ public class lamina_menu extends JLabel implements ActionListener {
 		
 		if(e.getSource()==boton3) {
 			System.out.println("yee");
-			
+			partida.NormasJuego();
 				
 			//frame.remove(this);
 		}
