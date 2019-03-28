@@ -123,7 +123,7 @@ final static int NUM_MIN_EQUIPOS=3;
 	    //add label
         jLabel_texto1.setForeground(Color.red);
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 0;
 	    add(jLabel_texto1, c);
 	    
 		        
@@ -137,12 +137,11 @@ final static int NUM_MIN_EQUIPOS=3;
 
         //Scroll Panel
         
-        c.insets = new Insets(20,0,20,0);
+        //c.insets = new Insets(20,0,20,0);
         
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 1;
         add(scrollPane, c);
 		
 	}

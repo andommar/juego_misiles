@@ -98,8 +98,7 @@ public class lamina_menu extends JLabel implements ActionListener {
 	    boton4.addActionListener(this); 
 	    boton5.addActionListener(this); 
 
-		
-		
+
 	}
 	
     public void paintComponent(Graphics g)
@@ -160,6 +159,7 @@ public class lamina_menu extends JLabel implements ActionListener {
 			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
 			Lamina_Ranking lamina_ranking = new Lamina_Ranking();
 			frame.add(lamina_ranking);
+			frame.setSize(650, 400);
 			frame.setVisible(true);
 		}
 		

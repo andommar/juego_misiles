@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -39,11 +40,13 @@ public class Lamina_Juego extends JPanel implements ActionListener {
     protected JLabel JLabel_nombre;
     protected JLabel jLabel_atacar;
     protected JLabel jLabel_texto2;
+    protected JLabel jLabel_misiles;
+    protected JLabel jLabel_misiles_disp;
     
     private final static String newline = "\n";
     
-    
     private JLabel jLabel_num_misiles;
+    
     JComboBox combobox_planetas;
     
     private ArrayList <Planeta> planetas_copia;
@@ -51,6 +54,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
    
     int i=0;
     int pos_array=0;
+    int num_misiles=0;
 	
 	
 	Lamina_Juego(ArrayList <Planeta> planetas){
@@ -67,12 +71,22 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		planetas_copia.get(pos_array).setMisiles_disponibles(planetas_copia.get(pos_array).getMisiles_antes_ronda());
 
 		
+		
+		
 		// Read the image and place it in the variable img so it can be used in paintComponent
         img = Toolkit.getDefaultToolkit().createImage("src/misiles_v4/space_fondo.jpg");
         
         //Add Components to this panel.
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
+		num_misiles=planetas_copia.get(pos_array).getMisiles_disponibles();
+		
+		//imagen icono
+		ImageIcon image = new ImageIcon("src/misiles_v4/misil_r.png");
+		jLabel_misiles = new JLabel(String.valueOf(num_misiles), image, JLabel.LEFT);
+		
+		
 		
 		//metemos los planetas en combobox
 		combobox_planetas = new JComboBox(nombres_planetas);
@@ -104,6 +118,9 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 	   jLabel_atacar = new JLabel ("Atacar a equipo: ");
 	   
 	   jLabel_num_misiles = new JLabel ("Número misiles a enviar: ");
+	   
+	   jLabel_misiles_disp = new JLabel ("Misiles disponibles:");
+	   
 
 	   
 	   
@@ -128,6 +145,8 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		c.gridy = 1;
 	    add(jLabel_texto2, c);
 	    
+
+	    
 	    //add label Atacar Equipo
        jLabel_atacar.setForeground(Color.red);
 		c.gridwidth = 1;
@@ -141,19 +160,34 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		c.gridx = 1;
 		c.gridy = 2;
 		add(combobox_planetas,c);
+		
+	    //jLabel_misiles.disponibles
+		jLabel_misiles_disp.setForeground(Color.red);
+		c.gridwidth = 1;
+		c.gridx = 0;
+		c.gridy = 3;
+	    add(jLabel_misiles_disp, c);
+		
+		
+	    //jLabel_misiles.setForeground(Color.red);
+		jLabel_misiles.setForeground(Color.red);
+		c.gridwidth = 1;
+		c.gridx = 1;
+		c.gridy = 3;
+	    add(jLabel_misiles, c);
 	    
 	    //add label num misiles
        jLabel_num_misiles.setForeground(Color.red);
 		c.gridwidth = 1;
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 	    add(jLabel_num_misiles, c);
 	    	    
 	    //add textField num_misiles
         c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 1;
 		c.gridx = 1;
-		c.gridy = 3;
+		c.gridy = 4;
         add(textField, c);
 	       
         c.insets = new Insets(30,0,0,0);
@@ -162,7 +196,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
         c.fill = GridBagConstraints.HORIZONTAL; //rellenar hasta el final de la fila
         c.gridwidth = GridBagConstraints.REMAINDER;
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 5;
         add(scrollPane, c);
 
         
@@ -172,7 +206,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		c.ipadx= 60; //Internal padding x
 		c.ipady= 20;//Internal padding y
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 6;
 		add(boton1,c);
 		
         c.insets = new Insets(30,0,0,0);
@@ -183,7 +217,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 		c.ipady= 20;
 		c.gridwidth = 1; //espacio de columnas que ocupa
 		c.gridx = 1;
-		c.gridy = 5;
+		c.gridy = 6;
 		add(boton2,c);
 				
 	}
@@ -234,6 +268,12 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 				
 				frases.add("El equipo "+planetas_copia.get(pos_array).getNombre()+" ataca a " +nombre_planeta+ " con "+ misiles_ataq+" misiles" );
 				
+				num_misiles=planetas_copia.get(pos_array).getMisiles_disponibles();
+				
+
+				jLabel_misiles.setText(String.valueOf(num_misiles));
+				
+				
 				if(planetas_copia.get(pos_array).getMisiles_disponibles()<0) //si los misiles bajan a menos de 0 los ponemos a 0
 					planetas_copia.get(pos_array).setMisiles_disponibles(0);
 			}
@@ -249,8 +289,7 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 			{
 
 				
-				planetas_copia.get(pos_array).setMisiles_defensivos((planetas_copia.get(pos_array).getMisiles_defensivos()+planetas_copia.get(pos_array).getMisiles_disponibles()/2));//Hacer caso cuando sea mandar misiles a defensa y añadir frase defensa al arraylist frases
-				frases.add("El equipo "+planetas_copia.get(pos_array).getNombre()+" ("+planetas_copia.get(pos_array).getTipo()+") se defiende con "+planetas_copia.get(pos_array).getMisiles_defensivos()+" misiles.");
+				
 				
 				Iterator<String> iterador = frases.iterator();
 				String frase="";
@@ -263,16 +302,32 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 				pos_array++;
 				jLabel_texto2.setText(planetas_copia.get(pos_array).getNombre());
 				planetas_copia.get(pos_array).setMisiles_disponibles(planetas_copia.get(pos_array).getMisiles_antes_ronda());
+				
+				num_misiles=planetas_copia.get(pos_array).getMisiles_disponibles();
+				
 
+				jLabel_misiles.setText(String.valueOf(num_misiles));
+				
+				
 			}
+			
+			
 			
 
         }
 		
 		else if(e.getSource()==boton2) {
+			
+			planetas_copia.get(pos_array).setMisiles_defensivos((planetas_copia.get(pos_array).getMisiles_defensivos()+planetas_copia.get(pos_array).getMisiles_disponibles()/2));//Hacer caso cuando sea mandar misiles a defensa y añadir frase defensa al arraylist frases
+			frases.add("El equipo "+planetas_copia.get(pos_array).getNombre()+" ("+planetas_copia.get(pos_array).getTipo()+") se defiende con "+planetas_copia.get(pos_array).getMisiles_defensivos()+" misiles.");
+			
+			
 			pos_array++;
 			jLabel_texto2.setText(planetas_copia.get(pos_array).getNombre());
 			planetas_copia.get(pos_array).setMisiles_disponibles(planetas_copia.get(pos_array).getMisiles_antes_ronda());
+			
+			
+			
 			
 			Iterator<String> iterador = frases.iterator();
 			String frase="";
@@ -281,9 +336,15 @@ public class Lamina_Juego extends JPanel implements ActionListener {
 			}
 			
 			textArea.append(frase);
+			num_misiles=planetas_copia.get(pos_array).getMisiles_disponibles();
+			
+
+			jLabel_misiles.setText(String.valueOf(num_misiles));
 		}
 		
 	}
+	
+	
 	
 	
 }

@@ -14,17 +14,16 @@ public class misilesv4_swing {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setSize(450, 500);
+		frame.setSize(450, 800);
 		
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); en teoria deberia maximizar ventana
-		frame.setLayout(null);
+		
 		frame.setLayout(new BorderLayout());
 		
 		lamina_menu label_menu = new lamina_menu();
 		frame.add(label_menu, BorderLayout.CENTER);
 		//frame.pack();
 		frame.setVisible(true);
-
 	}
 
 }

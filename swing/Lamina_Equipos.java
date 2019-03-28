@@ -245,9 +245,6 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 		}
 		
 		
-
-
-
 	}
 	
 
