@@ -13,12 +13,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 //https://www.geeksforgeeks.org/java-swing-jtextarea/
@@ -49,6 +52,7 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
     protected JTextArea textArea;
  
     private final static String newline = "\n";
+    JComboBox combobox_planetas_tipo;
     
     JButton boton1 = new JButton ("Crear");
     JButton boton2 = new JButton ("Avanzar");
@@ -59,9 +63,23 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 	
 	public Lamina_Equipos(){
 		
+		int i=0;
+		
 		// Read the image and place it in the variable img so it can be used in paintComponent
         img = Toolkit.getDefaultToolkit().createImage("src/misiles_v4/space_fondo.jpg");
 		
+        //Tipos planetas
+        
+		String [] tipos_planetas = {"Normal","Rojo","Azul","Verde","Gaseoso","Enano","Cabrón","Dejadme en paz","Copión","Simios"};
+		for(Planeta pasar_planeta:planetas) {
+			tipos_planetas[i]=pasar_planeta.getNombre();
+			i++;
+		}
+        
+		
+		//metemos los planetas en combobox
+		combobox_planetas_tipo = new JComboBox(tipos_planetas);
+        
       //Text Field
 		textField = new JTextField(15);
 		textField.addActionListener(this);
@@ -100,7 +118,7 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 		//Botón 2
 		boton2.setBackground(Color.lightGray);
 		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE)); //matteborder define el grosor de cada extremo del boton y el color
-		
+		boton2.addActionListener(this);
 
 		
 	    //add label
@@ -128,20 +146,31 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0;
         c.weighty = 10;
+	    //add combobox
+	    c.gridwidth = 1;
 		c.gridx = 1;
 		c.gridy = 2;
-        add(textField2, c);
+		add(combobox_planetas_tipo,c);
         
         //boton 1
         
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.NONE;
+		c.gridwidth = 1; //espacio de columnas que ocupa
+		c.ipadx= 60; //Internal padding x
+		c.ipady= 20;//Internal padding y
 		c.gridx = 0;
 		c.gridy = 4;
 		add(boton1,c);
         
         
         //boton 2
-		c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(30,0,0,0);
+        
+		//add label boton2
+		c.fill = GridBagConstraints.NONE;
+		c.ipadx= 40;
+		c.ipady= 20;
+		c.gridwidth = 1; //espacio de columnas que ocupa
 		c.gridx = 1;
 		c.gridy = 4;
 		add(boton2,c);
@@ -154,13 +183,9 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
         
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = GridBagConstraints.REMAINDER;
-        c.weightx = 0;
-        c.weighty = 0;
 		c.gridx = 0;
 		c.gridy = 3;
         add(scrollPane, c);
-        
-
         
 
 
@@ -179,24 +204,39 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		JFrame frame =(JFrame)SwingUtilities.getWindowAncestor(this);
+
+		String nombre_planeta_tipo = (String) combobox_planetas_tipo.getItemAt(combobox_planetas_tipo.getSelectedIndex()); //cogemos el tipo del equipo
+		
 		if (e.getSource()==boton1) {
 			num_equipos++;
 			
 	        String text = textField.getText();
-	        String texto2 = textField2.getText();
 	        
 	        Planeta planeta = new Planeta (text, 1);
 	        planetas.add(planeta);
 	        
-	        textArea.append(text + " de tipo "+texto2+" "+ newline); //append envia el texto al final
+	        textArea.append(text + " de tipo "+nombre_planeta_tipo+" "+ newline); //append envia el texto al final
 	        textField.setText("");
 	        textField2.setText("");
         }
 		
 		if(e.getSource()==boton2) {
 
-				JOptionPane.showMessageDialog(null, "Tu madre");
-			
+			if(num_equipos<3) {
+				JOptionPane.showMessageDialog(new JPanel(),
+					    "Debes introducir un mínimo de 3 equipos.",
+					    "Inane warning",
+					    JOptionPane.WARNING_MESSAGE);
+			}
+			else
+			{
+				frame.remove(this);
+				Lamina_Juego lamina_juego = new Lamina_Juego(planetas);
+				frame.add(lamina_juego);
+				frame.setVisible(true);
+			}
+
 			
 		}
 		
@@ -209,4 +249,6 @@ public class Lamina_Equipos extends JPanel implements ActionListener{
 
 
 	}
+	
+
 }

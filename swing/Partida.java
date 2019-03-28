@@ -10,12 +10,15 @@ public class Partida {
 
 	
 	private String ganador;
+	private String info="Este juego consiste en una batalla entre planetas (jugadores) hasta que solo quede uno en pie (o ninguno).\n "
+			+ "El juego funciona por rondas. Cada ronda un planeta puede elegir a quien atacar con sus misiles o utilizarlos para defenderse";
 
 	
 	
 	//metodos
 	
 	
+
 	public void MostrarMenu ()	{
 		System.out.println("------------- MENÚ ------------");
 		System.out.println("---- 1 | Jugar ----------------");
@@ -198,6 +201,15 @@ public class Partida {
 
 	
 	//getters setters
+
+	
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
 
 
 	public String getGanador() {

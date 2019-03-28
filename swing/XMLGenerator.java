@@ -51,11 +51,20 @@ import org.w3c.dom.Text;
 //http://www.vogella.com/tutorials/JavaXML/article.html
 
 
+
+
 public class XMLGenerator {
+	
+	private final static String newline = "\n";
 
 	File file = new File("Ranking_equipos.xml");
 	
+	private String ranking_frases="";
 	
+	
+
+
+
 	public void GenerarXML(String nombre) {
 		
 		
@@ -272,7 +281,7 @@ public class XMLGenerator {
 	
 	public void MostrarRankingXML() throws Exception{
 		
-		
+		String frase="";
 		int num_veces_ganadas;
 		String string_veces_ganadas;
 		String nombre_equipo;
@@ -317,12 +326,28 @@ public class XMLGenerator {
 	        		String nombre = entrada.getKey();
 	        		Integer value = entrada.getValue();
 	        		
-	        	if(num_vic == value )
-	        	System.out.println("Nombre equipo: "+nombre+"\t partidas ganadas: " + num_vic);
+		        	if(num_vic == value )
+		        	{
+			        	System.out.println("Nombre equipo: "+nombre+"\t partidas ganadas: " + num_vic);
+			        	frase ="Equipo: "+ nombre+ "\t victorias: "+ num_vic;
+			        	ranking_frases=ranking_frases+frase+newline;
+		        	}
 	        	}
 	        }
 		
 	}
+	
+	public String getRanking_frases() {
+		return ranking_frases;
+	}
+
+
+	public void setRanking_frases(String ranking_frases) {
+		this.ranking_frases = ranking_frases;
+	}
+	
+	
+
 }
 	
 	

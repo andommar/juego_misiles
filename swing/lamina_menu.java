@@ -32,8 +32,8 @@ public class lamina_menu extends JLabel implements ActionListener {
 	JButton boton1 = new JButton ("Jugar");
 	JButton boton2 = new JButton ("Crear equipos");
 	JButton boton3 = new JButton ("Información");
-	JButton boton4 = new JButton ("Jugar4");
-	JButton boton5 = new JButton ("Jugar5");
+	JButton boton4 = new JButton ("Frases");
+	JButton boton5 = new JButton ("Ranking");
 	
 	lamina_menu(){
 		
@@ -47,14 +47,18 @@ public class lamina_menu extends JLabel implements ActionListener {
 		
 		//-------------------------BOTONES-------------------------
 		
-		boton1.setOpaque(false);
-		boton1.setContentAreaFilled(false);
-		boton1.setBorderPainted(false);
-		boton1.setForeground(Color.RED);
-		
-		
+		boton1.setBackground(Color.lightGray);
+		boton1.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
 		boton2.setBackground(Color.lightGray);
 		boton2.setBorder(new MatteBorder(2,2,2,2, Color.WHITE)); //matteborder define el grosor de cada extremo del boton y el color
+		boton3.setBackground(Color.lightGray);
+		boton3.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
+		boton4.setBackground(Color.lightGray);
+		boton4.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
+		boton5.setBackground(Color.lightGray);
+		boton5.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
+		
+		
 		
 
 		
@@ -117,15 +121,15 @@ public class lamina_menu extends JLabel implements ActionListener {
 			
 			frame.remove(this);
 			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
-			Lamina_Seleccion_equipos lamina_seleccion = new Lamina_Seleccion_equipos();
-			frame.add(lamina_seleccion);
+			//Lamina_Juego lamina_juego = new Lamina_Juego();
+			//frame.add(lamina_juego);
 			frame.setVisible(true);
 			
 			//frame.remove(this);
 		}
 		
 		if(e.getSource()==boton2) {
-			System.out.println("yee");
+			
 			
 			frame.remove(this);
 			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
@@ -139,10 +143,24 @@ public class lamina_menu extends JLabel implements ActionListener {
 		}
 		
 		if(e.getSource()==boton3) {
-			System.out.println("yee");
+			
+			
+			frame.remove(this);
+			Lamina_Info lamina_info = new Lamina_Info();
+			frame.add(lamina_info);
+
+			frame.setVisible(true);
 			
 				
 			//frame.remove(this);
+		}
+		
+		if(e.getSource()==boton5) {
+			frame.remove(this);
+			//Lamina_Juego lamina_juegos  = new Lamina_Juego();
+			Lamina_Ranking lamina_ranking = new Lamina_Ranking();
+			frame.add(lamina_ranking);
+			frame.setVisible(true);
 		}
 		
 		
